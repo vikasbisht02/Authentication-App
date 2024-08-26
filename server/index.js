@@ -13,10 +13,15 @@ dotenv.config();
 const app = express();
 const PORT = process.env.PORT || 5000;
 
+const allowedOrigins = process.env.NODE_ENV !== 'development' 
+  ? [process.env.PRODUCTION_URL] 
+  : [process.env.CLIENT_URL];
+
 app.use(cors({
-  origin: ["http://localhost:5173", "https://authentication-app-eight-jet.vercel.app"],
-  credentials: true,
+  origin: allowedOrigins,
+  credentials: true, // Ensure credentials are passed
 }));
+
 
 
 app.use(express.json()); // allows us to parse incoming requests:req.body
