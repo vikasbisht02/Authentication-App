@@ -17,10 +17,10 @@ const User = require("../models/userModel.js");
 
 
 //For Development Purpose
-//const CLIENT_URL = process.env.CLIENT_URL;
+const CLIENT_URL = process.env.CLIENT_URL;
 
-//For Production Purpose  
-const FRONTEND_URL = process.env.FRONTEND_URL;
+// //For Production Purpose  
+// const FRONTEND_URL = "";
 
 
 
@@ -175,7 +175,7 @@ module.exports.forgotPassword = async (req, res) => {
     // send email
     await sendPasswordResetEmail(
       user.email,
-      `${process.env.FRONTEND_URL}/reset-password/${resetToken}`
+      `${CLIENT_URL}/reset-password/${resetToken}`
     );
 
     res

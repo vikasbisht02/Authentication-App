@@ -15,20 +15,23 @@ const PORT = process.env.PORT || 5000;
 
 
 
-
-// //For Development Purpose
-// app.use(cors({
-//   origin: process.env.CLIENT_URL,
-//   credentials: true, // Ensure credentials are passed
-// }));
+const FRONTEND_URL = ""
 
 
 
-//For Production Purpose
+//For Development Purpose
 app.use(cors({
-  origin: process.env.FRONTEND_URL,
+  origin: process.env.CLIENT_URL,
   credentials: true, // Ensure credentials are passed
 }));
+
+
+
+// //For Production Purpose
+// app.use(cors({
+//   origin: process.env.FRONTEND_URL,
+//   credentials: true, // Ensure credentials are passed
+// }));
 
 
 app.use(express.json()); // allows us to parse incoming requests:req.body

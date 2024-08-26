@@ -1,7 +1,12 @@
 import { create } from "zustand";
 import axios from "axios";
 
-const API_URL = "https://authentication-app-server-z0vg.onrender.com/api/auth";
+
+// For Development Purpose
+const API_URL = "http://localhost:5000/api/auth";
+
+// // For Production Purpose
+// const API_URL = "https://authentication-app-server-z0vg.onrender.com/api/auth";
 
 axios.defaults.withCredentials = true;
 
