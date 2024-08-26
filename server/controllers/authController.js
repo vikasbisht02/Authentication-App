@@ -16,11 +16,11 @@ const User = require("../models/userModel.js");
 
 
 
-//For Development Purpose
-const CLIENT_URL = process.env.CLIENT_URL;
+// //For Development Purpose
+// const CLIENT_URL = process.env.CLIENT_URL;
 
-// //For Production Purpose  
-// const FRONTEND_URL = "";
+//For Production Purpose  
+const FRONTEND_URL = "https://authentication-app-three-theta.vercel.app"
 
 
 
@@ -175,7 +175,7 @@ module.exports.forgotPassword = async (req, res) => {
     // send email
     await sendPasswordResetEmail(
       user.email,
-      `${CLIENT_URL}/reset-password/${resetToken}`
+      `${FRONTEND_URL}/reset-password/${resetToken}`
     );
 
     res

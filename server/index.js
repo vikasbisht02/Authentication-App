@@ -15,23 +15,23 @@ const PORT = process.env.PORT || 5000;
 
 
 
-const FRONTEND_URL = ""
+const FRONTEND_URL = "https://authentication-app-three-theta.vercel.app"
 
 
 
-//For Development Purpose
-app.use(cors({
-  origin: process.env.CLIENT_URL,
-  credentials: true, // Ensure credentials are passed
-}));
-
-
-
-// //For Production Purpose
+// //For Development Purpose
 // app.use(cors({
-//   origin: process.env.FRONTEND_URL,
+//   origin: process.env.CLIENT_URL,
 //   credentials: true, // Ensure credentials are passed
 // }));
+
+
+
+//For Production Purpose
+app.use(cors({
+  origin: FRONTEND_URL,
+  credentials: true, // Ensure credentials are passed
+}));
 
 
 app.use(express.json()); // allows us to parse incoming requests:req.body
