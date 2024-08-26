@@ -10,9 +10,6 @@ const {
 }  = require("../mailtrap/email.js");
 const  User  = require("../models/userModel.js");
 
-const URL = process.env.NODE_ENV !== 'development' 
-  ? [process.env.PRODUCTION_URL] 
-  : [process.env.CLIENT_URL];
 
 
 module.exports.signup = async (req, res) => {
@@ -151,7 +148,7 @@ module.exports.forgotPassword = async (req, res) => {
 		await user.save();
 
 		// send email
-		await sendPasswordResetEmail(user.email, `${URL}/reset-password/${resetToken}`);
+		await sendPasswordResetEmail(user.email, `${process.env.CLIENT_URL}/reset-password/${resetToken}`);
 
 		res.status(200).json({ success: true, message: "Password reset link sent to your email" });
 	} catch (error) {
