@@ -58,7 +58,7 @@ const PasswordStrengthMeter = ({ password }) => {
 
   return (
     <div className="mt-2">
-      <div className="flex flex-col sm:flex-row justify-between items-center mb-1 text-xs sm:text-sm">
+      <div className="flex justify-between  mb-1 text-xs sm:text-sm">
         <span className="text-gray-400">Password strength</span>
         <span className="text-gray-400">{getStrengthText(strength)}</span>
       </div>

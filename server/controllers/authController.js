@@ -15,14 +15,11 @@ const {
 const User = require("../models/userModel.js");
 
 
-
-// //For Development Purpose
+// //Development Purpose
 // const CLIENT_URL = process.env.CLIENT_URL;
 
-//For Production Purpose  
-const FRONTEND_URL = "https://authentication-app-three-theta.vercel.app"
-
-
+//Production Purpose
+const FRONTEND_URL = "https://authentication-website-client.vercel.app"
 
 module.exports.signup = async (req, res) => {
   const { email, password, name } = req.body;
@@ -33,7 +30,6 @@ module.exports.signup = async (req, res) => {
     }
 
     const userAlreadyExists = await User.findOne({ email });
-    console.log("userAlreadyExists", userAlreadyExists);
 
     if (userAlreadyExists) {
       return res
@@ -56,20 +52,22 @@ module.exports.signup = async (req, res) => {
 
     await user.save();
 
-    // jwt
+    // Generate JWT and set cookie
     generateTokenAndSetCookie(res, user._id);
 
+    // Send verification email
     await sendVerificationEmail(user.email, verificationToken);
 
     res.status(201).json({
       success: true,
-      message: "User created successfully",
+      message: "User created successfully. Please verify your email.",
       user: {
         ...user._doc,
-        password: undefined,
+        password: undefined, // Don't send the password back in the response
       },
     });
   } catch (error) {
+    console.error("Signup error:", error);
     res.status(400).json({ success: false, message: error.message });
   }
 };
@@ -83,12 +81,10 @@ module.exports.verifyEmail = async (req, res) => {
     });
 
     if (!user) {
-      return res
-        .status(400)
-        .json({
-          success: false,
-          message: "Invalid or expired verification code",
-        });
+      return res.status(400).json({
+        success: false,
+        message: "Invalid or expired verification code",
+      });
     }
 
     user.isVerified = true;
@@ -178,12 +174,10 @@ module.exports.forgotPassword = async (req, res) => {
       `${FRONTEND_URL}/reset-password/${resetToken}`
     );
 
-    res
-      .status(200)
-      .json({
-        success: true,
-        message: "Password reset link sent to your email",
-      });
+    res.status(200).json({
+      success: true,
+      message: "Password reset link sent to your email",
+    });
   } catch (error) {
     console.log("Error in forgotPassword ", error);
     res.status(400).json({ success: false, message: error.message });
