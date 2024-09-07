@@ -23,7 +23,7 @@ const PORT = process.env.PORT || 5000;
 
 
 //For Production Purpose
-const FRONTEND_URL = "https://authentication-website-client.vercel.app"
+const FRONTEND_URL = "https://authentication-app-client-tau.vercel.app"
 app.use(cors({
   origin: FRONTEND_URL,
   credentials: true, // Ensure credentials are passed

@@ -19,7 +19,7 @@ const User = require("../models/userModel.js");
 // const CLIENT_URL = process.env.CLIENT_URL;
 
 //Production Purpose
-const FRONTEND_URL = "https://authentication-website-client.vercel.app"
+const FRONTEND_URL = "https://authentication-app-client-tau.vercel.app"
 
 module.exports.signup = async (req, res) => {
   const { email, password, name } = req.body;
