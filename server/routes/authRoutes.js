@@ -9,7 +9,7 @@ const {
 	checkAuth,
 } =  require("../controllers/authController.js");
 const { verifyToken } =  require("../middleware/verifyToken.js");
-const { sendEmail } = require("../mailtrap/email.js");
+
 
 const router = express.Router();
 
