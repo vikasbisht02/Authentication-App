@@ -6,7 +6,7 @@ import axios from "axios";
 // const API_URL = "http://localhost:5000/api/auth";
 
 // For Production Purpose
-const API_URL = "https://authentication-website-server.onrender.com/api/auth";
+const API_URL = "https://authentication-app-server-r3cf.onrender.com/api/auth";
 
 axios.defaults.withCredentials = true;
 
